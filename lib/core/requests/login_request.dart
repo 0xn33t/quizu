@@ -4,7 +4,7 @@ part 'login_request.g.dart';
 
 @JsonSerializable(includeIfNull: false, createFactory: false)
 class LoginRequest {
-  @JsonKey(name: 'otp')
+  @JsonKey(name: 'OTP')
   final String otp;
 
   @JsonKey(name: 'mobile')
@@ -12,6 +12,5 @@ class LoginRequest {
 
   const LoginRequest({required this.otp, required this.mobile});
 
-  @override
   Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
 }

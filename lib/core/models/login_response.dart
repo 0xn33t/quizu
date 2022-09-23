@@ -22,7 +22,7 @@ class LoginResponse {
   @JsonKey(name: 'success')
   final bool success;
 
-  @JsonKey(name: 'msg')
+  @JsonKey(name: 'message')
   final String msg;
 
   @JsonKey(name: 'token')
@@ -43,31 +43,3 @@ class LoginResponse {
 
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 }
-
-
-/*
-
-{
-    "success": true,
-    "user_status": "new",
-    "msg": "user created!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODMzLCJpYXQiOjE2NjM4NTI2OTl9.G4DuQRVqlAFfCm-FqPWh76tSfoWBcLF4AidKHxgt6Cg"
-}
-
-{
-    "success": true,
-    "msg": "Token returning!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjM4NTI3MTF9.4WYrtvtBYLkGbCSUjEqZ-J-yiJwq1BaRTC3v0OguEjE",
-    "name": null,
-    "mobile": "0512345670"
-}
-
-{
-    "success": true,
-    "msg": "Token returning!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjM4NTI3MjB9.v8wsgJjlL2YLAkjc5UmgJDJVs2gqUQixtjcTSSt1WZA",
-    "name": "Majed",
-    "mobile": "0512345678"
-}
-
-*/

@@ -1,11 +1,21 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_u/core/index.dart';
 import 'dart:async';
 
+import 'package:quiz_u/core/states/account_state.dart';
+
 void main() {
-  runApp(const AppBootstrap());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AccountState>(
+        create: (context) => AccountState(),
+      ),
+    ],
+    child: const AppBootstrap(),
+  ));
 }
 
 class AppBootstrap extends StatefulWidget {
@@ -16,7 +26,7 @@ class AppBootstrap extends StatefulWidget {
 }
 
 class _AppBootstrapState extends State<AppBootstrap> {
-  final _appRouter = AppRouter();
+  final _appRouter = AppRouter(navigatorKey: AppNavigatorState.navigatorKey);
 
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;

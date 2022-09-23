@@ -1,5 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_u/core/repositories/account_repository.dart';
+import 'package:quiz_u/core/requests/update_user_request.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
+import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/validators.dart';
 import 'package:quiz_u/ui/common/widgets/async_loader.dart';
 import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
@@ -22,7 +26,11 @@ class CompleteAccountFormState extends State<CompleteAccountForm> {
       state.save();
       try {
         loaderState.updateState();
-
+        final res = await _accountRepository
+            .updateUser(UpdateUserRequest(name: _name.text));
+        if (!mounted) return;
+        AccountState.read(context).setUser(res);
+        context.router.replaceAll(const [TabsRoute()]);
         loaderState.updateState();
       } catch (e) {
         loaderState.updateState();
@@ -33,6 +41,7 @@ class CompleteAccountFormState extends State<CompleteAccountForm> {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return Form(
       key: _formKey,
       child: Column(

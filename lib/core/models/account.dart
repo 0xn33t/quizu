@@ -25,7 +25,7 @@ class Account {
   @JsonKey(name: 'token')
   final String token;
 
-  String get accessToken => '$scheme $accessToken';
+  String get accessToken => '$scheme $token';
 
   Map<String, dynamic> toJson() => _$AccountToJson(this);
 }

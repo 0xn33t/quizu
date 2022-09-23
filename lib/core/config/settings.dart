@@ -8,5 +8,8 @@ abstract class Settings {
     Locale('ar', 'SA'),
     Locale('en', 'US'),
   ];
-  static const String tokenScheme = 'bearer';
+  static const String tokenScheme = 'Bearer';
+  static const String authStorageKey = 'authorized_v1';
+  static const String scoresStorageKey = 'scores_v1';
+  static const Duration quizDuration = Duration(minutes: 2);
 }
