@@ -13,7 +13,7 @@ class UserScores extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('My Scores'),
+        Text(context.l10n.myScores),
         AppSpacers.verticalContent,
         Selector<AccountState, List<UserScore>>(
           selector: (_, state) => state.scores,

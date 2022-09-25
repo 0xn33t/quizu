@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:quiz_u/core/config/settings.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/account.dart';
 import 'package:quiz_u/core/repositories/account_repository.dart';
 import 'package:quiz_u/core/requests/login_request.dart';
@@ -79,11 +80,9 @@ class _VerificationFormState extends State<VerificationForm> {
                 shape: PinCodeFieldShape.underline,
               ),
               validator: (value) {
-                if (Validators.isEmpty(value)) {
-                  return 'Otp is required';
-                }
+                if (Validators.isEmpty(value)) return context.l10n.otpRequired;
                 if (!Validators.isNumeric(value) || value!.length != 4) {
-                  return 'Invalid otp format';
+                  return context.l10n.invalidOtpFormat;
                 }
                 return null;
               },
@@ -97,7 +96,7 @@ class _VerificationFormState extends State<VerificationForm> {
                   onPressed: state.isLoading ? null : () => _submit(state),
                   child: state.isLoading
                       ? const LoadingIndicator(dimension: 20)
-                      : Text('Check'),
+                      : Text(context.l10n.check),
                 );
               },
             ),

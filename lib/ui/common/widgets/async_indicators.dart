@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 
 class ErrorMessageIndicator extends StatelessWidget {
   final String? message;
@@ -16,7 +17,7 @@ class ErrorMessageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        message ?? 'General error message',
+        message ?? context.l10n.somethingWentWrong,
       ),
     );
   }

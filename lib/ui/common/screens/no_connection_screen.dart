@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 
 class NoConnectionScreen extends StatelessWidget {
-  const NoConnectionScreen({ Key? key }) : super(key: key);
+  const NoConnectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('No Connections'),
+        child: Text(context.l10n.noConnections),
       ),
     );
   }

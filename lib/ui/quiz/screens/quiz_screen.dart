@@ -15,7 +15,7 @@ class QuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz Screen'),
+        title: Text(context.l10n.quiz),
       ),
       body: ChangeNotifierProvider(
         create: (_) => QuizState(),

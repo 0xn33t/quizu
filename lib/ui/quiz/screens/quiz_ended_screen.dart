@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
 
 class QuizEndedScreen extends StatelessWidget {
   const QuizEndedScreen({super.key, required this.completed, this.score})
       : assert(!(completed && score == null),
-            'Scroe value must be provided on completion');
+            'Score value must be provided on completion');
 
   final bool completed;
   final int? score;
@@ -15,7 +16,7 @@ class QuizEndedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz Ended'),
+        title: Text(context.l10n.quizEnded),
       ),
       body: completed ? _QuizCompleted(score: score!) : const _WrongAnswer(),
     );
@@ -37,7 +38,7 @@ class _QuizCompleted extends StatelessWidget {
         Text('correct answers!'),
         TextButton.icon(
           icon: const Icon(FlutterRemix.share_line),
-          label: Text('Share'),
+          label: Text(context.l10n.share),
           onPressed: () {},
         ),
       ],
@@ -53,12 +54,12 @@ class _WrongAnswer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Wrong Answer'),
+        Text(context.l10n.wrongAnswer),
         ElevatedButton(
           onPressed: () {
             context.router.replace(const QuizRoute());
           },
-          child: Text('Try Again'),
+          child: Text(context.l10n.tryAgain),
         ),
       ],
     );

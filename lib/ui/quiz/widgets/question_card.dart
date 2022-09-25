@@ -47,7 +47,7 @@ class QuestionCard extends StatelessWidget {
               onPressed: () {
                 QuizState.read(context).onSkip();
               },
-              child: Text('Skip'),
+              child: Text(context.l10n.skip),
             );
           },
         ),

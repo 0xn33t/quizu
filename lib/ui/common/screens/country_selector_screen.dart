@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/country.dart';
 import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/country_utils.dart';
@@ -23,7 +24,7 @@ class CountrySelectorScreenState extends State<CountrySelectorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select area code'),
+        title: Text(context.l10n.selectAreaCode),
       ),
       body: Column(
         children: [
@@ -31,7 +32,7 @@ class CountrySelectorScreenState extends State<CountrySelectorScreen> {
             padding: const EdgeInsets.all(AppEdges.content),
             child: TextField(
               controller: _controller,
-              decoration: InputDecoration(hintText: 'Search...'),
+              decoration: InputDecoration(hintText: context.l10n.search),
               onChanged: (value) => setState(() => _keyword = value),
             ),
           ),
@@ -82,7 +83,7 @@ class CountriesList extends StatelessWidget {
             children: [
               Text(
                 region.flag,
-                style: TextStyle(color: Colors.black, fontSize: 18),
+                style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
               AppSpacers.horizontalMedium,
               Text(region.name),

@@ -11,7 +11,7 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Verification Screen'),
+        title: Text(context.l10n.mobileVerification),
       ),
       body: Padding(
         padding: const EdgeInsets.all(AppEdges.content),

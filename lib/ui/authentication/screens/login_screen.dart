@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Screen'),
+        title: Text(context.l10n.login),
       ),
       body: const Padding(
         padding: EdgeInsets.all(AppEdges.content),

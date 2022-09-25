@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/repositories/account_repository.dart';
 import 'package:quiz_u/core/requests/update_user_request.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
-import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/validators.dart';
 import 'package:quiz_u/ui/common/widgets/async_loader.dart';
 import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
@@ -40,7 +40,6 @@ class CompleteAccountFormState extends State<CompleteAccountForm> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     return Form(
       key: _formKey,
       child: Column(
@@ -48,10 +47,10 @@ class CompleteAccountFormState extends State<CompleteAccountForm> {
         children: [
           TextFormField(
             controller: _name,
-            decoration: InputDecoration(labelText: 'What\'s your name?'),
+            decoration: InputDecoration(labelText: context.l10n.yourName),
             keyboardType: TextInputType.text,
             validator: (value) =>
-                Validators.isEmpty(value) ? 'Please enter your name' : null,
+                Validators.isEmpty(value) ? context.l10n.nameRequired : null,
           ),
           AsyncLoaderProvider(
             consumer: AsyncLoaderConsumer(
@@ -60,7 +59,7 @@ class CompleteAccountFormState extends State<CompleteAccountForm> {
                   onPressed: state.isLoading ? null : () => _submit(state),
                   child: state.isLoading
                       ? const LoadingIndicator(dimension: 20)
-                      : Text('Done'),
+                      : Text(context.l10n.done),
                 );
               },
             ),

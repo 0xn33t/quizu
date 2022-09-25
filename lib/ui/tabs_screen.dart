@@ -5,33 +5,34 @@ import 'package:flutter_remix/flutter_remix.dart';
 class TabsScreen extends StatelessWidget {
   const TabsScreen({Key? key}) : super(key: key);
 
-  static const List<AppTabItem> _tabs = [
-    AppTabItem(
-      label: 'Home',
-      icon: FlutterRemix.home_6_line,
-      route: HomeRoute(),
-    ),
-    AppTabItem(
-      label: 'Leaderboard',
-      icon: FlutterRemix.trophy_line,
-      route: LeaderboardRoute(),
-    ),
-    AppTabItem(
-      label: 'Profile',
-      icon: FlutterRemix.user_3_line,
-      route: ProfileRoute(),
-    ),
-  ];
+  static List<AppTabItem> _tabs(BuildContext context) => [
+        AppTabItem(
+          label: context.l10n.home,
+          icon: FlutterRemix.home_6_line,
+          route: const HomeRoute(),
+        ),
+        AppTabItem(
+          label: context.l10n.leaderboard,
+          icon: FlutterRemix.trophy_line,
+          route: const LeaderboardRoute(),
+        ),
+        AppTabItem(
+          label: context.l10n.profile,
+          icon: FlutterRemix.user_3_line,
+          route: const ProfileRoute(),
+        ),
+      ];
 
   @override
   Widget build(context) {
+    final tabs = _tabs(context);
     return AutoTabsScaffold(
-      routes: _tabs.map((t) => t.route).toList(),
+      routes: tabs.map((t) => t.route).toList(),
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
-          items: _tabs
+          items: tabs
               .map((t) => BottomNavigationBarItem(
                     label: t.label,
                     icon: Icon(t.icon),

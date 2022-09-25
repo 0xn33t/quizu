@@ -9,7 +9,7 @@ class CompleteAccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Complete Account Screen'),
+        title: Text(context.l10n.completeAccount),
       ),
       body: const Padding(
         padding: EdgeInsets.all(AppEdges.content),

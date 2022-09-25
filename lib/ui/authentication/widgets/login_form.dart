@@ -32,7 +32,7 @@ class _LoginFormState extends State<LoginForm> {
         context.router.push(VerificationRoute(mobile: parsedMobile.e164));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          ErrorSnackBar(content: Text('Invalid mobile number')),
+          ErrorSnackBar(content: Text(context.l10n.mobileNumberInvalid)),
         );
       }
     }
@@ -49,7 +49,7 @@ class _LoginFormState extends State<LoginForm> {
           AppSpacers.verticalContent,
           ElevatedButton(
             onPressed: _submit,
-            child: Text('Start'),
+            child: Text(context.l10n.start),
           ),
         ],
       ),

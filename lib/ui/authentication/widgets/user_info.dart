@@ -20,8 +20,8 @@ class UserInfo extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Name: ${result.name}'),
-              Text('Mobile: ${result.mobile}'),
+              Text('${context.l10n.name}: ${result.name}'),
+              Text('${context.l10n.mobileNumber}: ${result.mobile}'),
             ],
           );
         },

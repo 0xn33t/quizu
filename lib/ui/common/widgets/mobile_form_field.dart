@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/country.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/account_state.dart';
@@ -19,14 +20,12 @@ class MobileFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-        labelText: 'mobile number',
-        prefixIcon: DialCodeSelector(),
+        labelText: context.l10n.mobileNumber,
+        prefixIcon: const DialCodeSelector(),
       ),
       keyboardType: TextInputType.number,
       validator: (value) {
-        if (Validators.isEmpty(value)) {
-          return 'Please enter your mobile number';
-        }
+        if (Validators.isEmpty(value)) return context.l10n.mobileNumberRequired;
         return validator?.call(value);
       },
     );
