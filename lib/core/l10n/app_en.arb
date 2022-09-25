@@ -1,4 +1,11 @@
 {
+    "@shareResult": {
+        "placeholders": {
+            "score": {
+                "type": "String"
+            }
+        }
+    },
     "quizU": "QuizU",
     "login": "Login",
     "start": "Start",
@@ -37,5 +44,7 @@
     "initializeAppFailed": "Failed to initialize app",
     "getQuestionsFailed": "Failed to get quiz questions",
     "getTopScoresFailed": "Failed to get top scores",
-    "getUserInfoFailed": "Failed to get user info"
+    "getUserInfoFailed": "Failed to get user info",
+    "shareResult": "I answered {score} correct answers in QuizU!",
+    "shareScoreFailed": "Failed to share your score"
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
+import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuizEndedScreen extends StatelessWidget {
   const QuizEndedScreen({super.key, required this.completed, this.score})
@@ -39,7 +41,15 @@ class _QuizCompleted extends StatelessWidget {
         TextButton.icon(
           icon: const Icon(FlutterRemix.share_line),
           label: Text(context.l10n.share),
-          onPressed: () {},
+          onPressed: () async {
+            try {
+              await Share.share(context.l10n.shareResult(score.toString()));
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                ErrorSnackBar(content: Text(context.l10n.shareScoreFailed)),
+              );
+            }
+          },
         ),
       ],
     );
