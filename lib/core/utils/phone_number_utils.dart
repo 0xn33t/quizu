@@ -1,5 +1,5 @@
 import 'package:phone_number/phone_number.dart';
-import 'package:quiz_u/core/config/index.dart';
+import 'package:quiz_u/core/config/settings.dart';
 
 class PhoneNumberUtils {
   PhoneNumberUtils({PhoneNumberUtil? plugin})
@@ -11,7 +11,6 @@ class PhoneNumberUtils {
     try {
       return await plugin.carrierRegionCode();
     } catch (e) {
-      print(e.toString());
       return Settings.fallbackCarrierRegionCode;
     }
   }
@@ -20,7 +19,6 @@ class PhoneNumberUtils {
     try {
       return await plugin.validate(string, regionCode: regionCode);
     } catch (e) {
-      print(e.toString());
       return false;
     }
   }
@@ -29,7 +27,6 @@ class PhoneNumberUtils {
     try {
       return await plugin.parse(string, regionCode: regionCode);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }

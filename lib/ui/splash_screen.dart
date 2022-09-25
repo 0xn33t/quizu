@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/commands.dart';
-import 'package:quiz_u/ui/index.dart';
+import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       await BootstrapCommand().execute();
       if (!mounted) return;
       final state = AccountState.read(context);
-      if (state.account != null && state.tokenVerified) {
+      if (state.isAuthorized) {
         context.router.replaceAll(const [TabsRoute()]);
         return;
       }

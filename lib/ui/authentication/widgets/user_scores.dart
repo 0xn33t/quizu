@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/user_score.dart';
 import 'package:quiz_u/core/states/account_state.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/datetime_utils.dart';
 
 class UserScores extends StatelessWidget {

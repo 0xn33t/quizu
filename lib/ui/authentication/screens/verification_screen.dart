@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/ui/authentication/widgets/verification_form.dart';
 
 class VerificationScreen extends StatelessWidget {

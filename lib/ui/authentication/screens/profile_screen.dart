@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/commands.dart';
 import 'package:quiz_u/ui/authentication/widgets/user_info.dart';
 import 'package:quiz_u/ui/authentication/widgets/user_scores.dart';

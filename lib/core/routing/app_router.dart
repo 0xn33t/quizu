@@ -8,9 +8,12 @@ import 'package:quiz_u/ui/authentication/screens/verification_screen.dart';
 import 'package:quiz_u/ui/common/screens/error_screen.dart';
 import 'package:quiz_u/ui/common/screens/leaderboard_screen.dart';
 import 'package:quiz_u/ui/common/screens/country_selector_screen.dart';
-import 'package:quiz_u/ui/index.dart';
+import 'package:quiz_u/ui/common/screens/no_connection_screen.dart';
+import 'package:quiz_u/ui/home/screens/home_screen.dart';
 import 'package:quiz_u/ui/quiz/screens/quiz_ended_screen.dart';
 import 'package:quiz_u/ui/quiz/screens/quiz_screen.dart';
+import 'package:quiz_u/ui/splash_screen.dart';
+import 'package:quiz_u/ui/tabs_screen.dart';
 
 part 'app_router.gr.dart';
 

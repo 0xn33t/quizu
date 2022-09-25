@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/account_state.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/phone_number_utils.dart';
 import 'package:quiz_u/ui/common/widgets/mobile_form_field.dart';
 import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';

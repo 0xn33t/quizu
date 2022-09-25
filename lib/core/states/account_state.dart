@@ -22,6 +22,8 @@ class AccountState extends ChangeNotifier {
   List<UserScore> _scores = [];
   List<UserScore> get scores => _scores;
 
+  bool get isAuthorized => account != null && tokenVerified;
+
   void setAccount(Account? account, {bool notifyListeners = true}) {
     _account = account;
     if (notifyListeners) this.notifyListeners();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_u/core/index.dart' show AppColors, AppFonts;
+import 'package:quiz_u/core/theme/styles.dart';
 
 class AppThemes {
   static final ThemeData lightTheme = ThemeData.light().copyWith(

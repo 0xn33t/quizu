@@ -40,7 +40,6 @@ class HttpClient {
         HttpHeaders.authorizationHeader: options.accessToken!,
     };
 
-    print(headers);
     final body = options.body == null ? null : jsonEncode(options.body);
     switch (options.method) {
       case HttpClientMethod.get:

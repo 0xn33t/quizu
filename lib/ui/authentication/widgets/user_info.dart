@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/user.dart';
 import 'package:quiz_u/core/repositories/account_repository.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/ui/common/widgets/extended_future_builder.dart';
 
 class UserInfo extends StatelessWidget {

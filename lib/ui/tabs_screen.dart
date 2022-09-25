@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_u/core/index.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
 
 class TabsScreen extends StatelessWidget {
   const TabsScreen({Key? key}) : super(key: key);

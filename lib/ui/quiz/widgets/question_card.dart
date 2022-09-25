@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/question.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/commands.dart';
 import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 

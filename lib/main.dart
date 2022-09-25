@@ -2,10 +2,13 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/config/settings.dart';
+import 'package:quiz_u/core/l10n/index.dart';
+import 'package:quiz_u/core/routing/app_router.dart';
 import 'dart:async';
 
 import 'package:quiz_u/core/states/account_state.dart';
+import 'package:quiz_u/core/theme/themes.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -51,10 +54,7 @@ class _AppBootstrapState extends State<AppBootstrap> {
       if (result == ConnectivityResult.none) {
         _appRouter.replaceAll(const [NoConnectionRoute()]);
       }
-    } on PlatformException catch (e) {
-      debugPrint(e.toString());
-      return;
-    }
+    } on PlatformException catch (_) {}
   }
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {

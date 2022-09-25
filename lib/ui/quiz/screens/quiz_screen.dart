@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_u/core/index.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/question.dart';
 import 'package:quiz_u/core/repositories/quiz_repository.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
