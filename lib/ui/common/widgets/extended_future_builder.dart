@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_u/core/utils/response_exception.dart';
 import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
 import 'async_indicators.dart';
 
@@ -29,7 +30,11 @@ class ExtendedFutureBuilder<T> extends StatelessWidget {
         }
 
         if (snapshot.hasError) {
-          return onError?.call(snapshot.error) ?? const ErrorMessageIndicator();
+          String? message = snapshot.error is ResponseException
+              ? (snapshot.error as ResponseException).message(context)
+              : null;
+          return onError?.call(snapshot.error) ??
+              ErrorMessageIndicator(message: message);
         }
 
         return builder.call(context, snapshot.data as T);

@@ -28,5 +28,14 @@
     "quiz": "Quiz",
     "skip": "Skip",
     "home": "Home",
-    "profile": "Profile"
+    "profile": "Profile",
+    "logoutFailed": "Failed to logout",
+    "loginFailed": "Failed to login",
+    "completeAccountFailed": "Failed to complete your account",
+    "otpVerificationFailed": "Failed to verify OTP",
+    "recordScoreFailed": "Failed to record your score",
+    "initializeAppFailed": "Failed to initialize app",
+    "getQuestionsFailed": "Failed to get quiz questions",
+    "getTopScoresFailed": "Failed to get top scores",
+    "getUserInfoFailed": "Failed to get user info"
 }

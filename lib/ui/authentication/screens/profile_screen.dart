@@ -4,6 +4,7 @@ import 'package:quiz_u/core/index.dart';
 import 'package:quiz_u/core/utils/commands.dart';
 import 'package:quiz_u/ui/authentication/widgets/user_info.dart';
 import 'package:quiz_u/ui/authentication/widgets/user_scores.dart';
+import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -16,8 +17,14 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async {
-              await LogoutCommand().execute();
-              context.router.replaceAll(const [LoginRoute()]);
+              try {
+                await LogoutCommand().execute();
+                context.router.replaceAll(const [LoginRoute()]);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  ErrorSnackBar(content: Text(context.l10n.logoutFailed)),
+                );
+              }
             },
             icon: const Icon(FlutterRemix.logout_circle_r_line),
           )

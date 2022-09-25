@@ -4,6 +4,7 @@ import 'package:quiz_u/core/index.dart';
 import 'package:quiz_u/core/models/question.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
 import 'package:quiz_u/core/utils/commands.dart';
+import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 
 typedef OnChoiceClicked = void Function(BuildContext context, String choice);
 
@@ -18,7 +19,13 @@ class QuestionCard extends StatelessWidget {
       final state = context.read<QuizState>();
       state.onScore(isLast);
       if (isLast) {
-        RecordScoreCommand().execute(state.score);
+        try {
+          RecordScoreCommand().execute(state.score);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            ErrorSnackBar(content: Text(context.l10n.recordScoreFailed)),
+          );
+        }
         context.router
             .replace(QuizEndedRoute(completed: true, score: state.score));
       }

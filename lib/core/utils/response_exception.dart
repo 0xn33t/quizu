@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:quiz_u/core/l10n/l10n.dart';
+
 class ResponseException implements Exception {
   const ResponseException(this.code);
 
@@ -12,6 +15,23 @@ class ResponseException implements Exception {
 
   @override
   int get hashCode => code.hashCode;
+
+  String message(BuildContext context) {
+    switch (code) {
+      case ResponseExceptionCodes.loginFailed:
+        return context.l10n.loginFailed;
+      case ResponseExceptionCodes.updateUserFailed:
+        return context.l10n.completeAccountFailed;
+      case ResponseExceptionCodes.getQuestionsFailed:
+        return context.l10n.getQuestionsFailed;
+      case ResponseExceptionCodes.getTopScoresFailed:
+        return context.l10n.getTopScoresFailed;
+      case ResponseExceptionCodes.getUserFailed:
+        return context.l10n.getUserInfoFailed;
+      default:
+        return context.l10n.somethingWentWrong;
+    }
+  }
 }
 
 extension ResponseExceptions on ResponseException {

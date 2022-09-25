@@ -18,6 +18,8 @@ class ErrorMessageIndicator extends StatelessWidget {
     return Center(
       child: Text(
         message ?? context.l10n.somethingWentWrong,
+        style:
+            Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.red),
       ),
     );
   }

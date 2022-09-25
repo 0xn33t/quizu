@@ -19,14 +19,19 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> bootstrap() async {
-    await BootstrapCommand().execute();
-    if (!mounted) return;
-    final state = AccountState.read(context);
-    if (state.account != null && state.tokenVerified) {
-      context.router.replaceAll(const [TabsRoute()]);
-      return;
+    try {
+      await BootstrapCommand().execute();
+      if (!mounted) return;
+      final state = AccountState.read(context);
+      if (state.account != null && state.tokenVerified) {
+        context.router.replaceAll(const [TabsRoute()]);
+        return;
+      }
+      await context.router.replaceAll(const [LoginRoute()]);
+    } catch (e) {
+      await context.router
+          .replaceAll([ErrorRoute(error: context.l10n.initializeAppFailed)]);
     }
-    await context.router.replaceAll(const [LoginRoute()]);
   }
 
   @override

@@ -14,6 +14,7 @@ import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/validators.dart';
 import 'package:quiz_u/ui/common/widgets/async_loader.dart';
 import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
+import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 
 class VerificationForm extends StatefulWidget {
   const VerificationForm({super.key, required this.mobile});
@@ -52,7 +53,9 @@ class _VerificationFormState extends State<VerificationForm> {
         loaderState.updateState();
       } catch (e) {
         loaderState.updateState();
-        print(e.toString());
+        ScaffoldMessenger.of(context).showSnackBar(
+          ErrorSnackBar(content: Text(context.l10n.otpVerificationFailed)),
+        );
       }
     }
   }

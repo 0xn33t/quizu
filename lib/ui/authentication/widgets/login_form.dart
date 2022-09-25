@@ -21,18 +21,26 @@ class _LoginFormState extends State<LoginForm> {
     final state = _formKey.currentState!;
     if (state.validate()) {
       state.save();
-      final regionCode = AccountState.read(context).regionCode;
-      final isValidMobile = await _phoneNumberUtils.validate(
-        _mobile.text,
-        regionCode: regionCode,
-      );
-      final parsedMobile =
-          await _phoneNumberUtils.parse(_mobile.text, regionCode: regionCode);
-      if (isValidMobile && parsedMobile != null) {
-        context.router.push(VerificationRoute(mobile: parsedMobile.e164));
-      } else {
+      try {
+        final regionCode = AccountState.read(context).regionCode;
+        final isValidMobile = await _phoneNumberUtils.validate(
+          _mobile.text,
+          regionCode: regionCode,
+        );
+        final parsedMobile =
+            await _phoneNumberUtils.parse(_mobile.text, regionCode: regionCode);
+        if (isValidMobile && parsedMobile != null) {
+          context.router.push(VerificationRoute(mobile: parsedMobile.e164));
+        } else {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              ErrorSnackBar(content: Text(context.l10n.mobileNumberInvalid)),
+            );
+          }
+        }
+      } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          ErrorSnackBar(content: Text(context.l10n.mobileNumberInvalid)),
+          ErrorSnackBar(content: Text(context.l10n.loginFailed)),
         );
       }
     }

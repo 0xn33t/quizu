@@ -39,7 +39,6 @@ class ScoreRepository extends BaseRepository {
         ),
       ),
     );
-
     if (res.statusCode == HttpStatus.ok) {
       return TopScore.fromJsonList(jsonDecode(res.body));
     }
