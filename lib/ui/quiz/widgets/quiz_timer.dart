@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_u/core/config/settings.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
+import 'package:quiz_u/core/utils/commands.dart';
 
 class QuizTimer extends StatefulWidget {
   const QuizTimer({super.key});
@@ -43,7 +44,7 @@ class _QuizTimerState extends State<QuizTimer> {
   void _quizIsUp() {
     _timer.cancel();
     final state = QuizState.read(context);
-    state.recordUserScore();
+    RecordScoreCommand().execute(state.score);
     context.router.replace(QuizEndedRoute(completed: true, score: state.score));
   }
 

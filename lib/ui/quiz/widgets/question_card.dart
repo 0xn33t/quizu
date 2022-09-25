@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz_u/core/index.dart';
 import 'package:quiz_u/core/models/question.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
+import 'package:quiz_u/core/utils/commands.dart';
 
 typedef OnChoiceClicked = void Function(BuildContext context, String choice);
 
@@ -17,7 +18,7 @@ class QuestionCard extends StatelessWidget {
       final state = context.read<QuizState>();
       state.onScore(isLast);
       if (isLast) {
-        state.recordUserScore();
+        RecordScoreCommand().execute(state.score);
         context.router
             .replace(QuizEndedRoute(completed: true, score: state.score));
       }

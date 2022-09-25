@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_u/core/models/top_score.dart';
 import 'package:quiz_u/core/repositories/score_repository.dart';
+import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/ui/common/widgets/extended_future_builder.dart';
 
@@ -9,6 +11,8 @@ class LeaderboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.select((AccountState s) => s.scores);
+    print('build LeaderboardScreen');
     return Scaffold(
       appBar: AppBar(
         title: Text('Leaderboard'),

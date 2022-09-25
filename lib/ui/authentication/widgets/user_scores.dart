@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_u/core/index.dart';
 import 'package:quiz_u/core/models/user_score.dart';
-import 'package:quiz_u/core/repositories/score_repository.dart';
+import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/datetime_utils.dart';
-import 'package:quiz_u/ui/common/widgets/extended_future_builder.dart';
 
 class UserScores extends StatelessWidget {
   const UserScores({super.key});
@@ -15,19 +15,19 @@ class UserScores extends StatelessWidget {
       children: [
         Text('My Scores'),
         AppSpacers.verticalContent,
-        ExtendedFutureBuilder<List<UserScore>>(
-          future: ScoreRepository().getScores(),
-          builder: (context, result) {
+        Selector<AccountState, List<UserScore>>(
+          selector: (_, state) => state.scores,
+          builder: (_, scores, __) {
             return Expanded(
               child: ListView.separated(
-                itemCount: result.length,
+                itemCount: scores.length,
                 separatorBuilder: (_, __) => const Divider(),
                 itemBuilder: (_, index) =>
-                    UserScoreCard(userScore: result[index]),
+                    UserScoreCard(userScore: scores[index]),
               ),
             );
           },
-        )
+        ),
       ],
     );
   }
