@@ -72,10 +72,12 @@ class RecordScoreCommand extends Command {
   RecordScoreCommand({
     FlutterSecureStorage? storage,
     AccountRepository? accountRepository,
+    ScoreRepository? scoreRepository,
   }) : super(
           'Record Score Command',
           storage: storage,
           accountRepository: accountRepository,
+          scoreRepository: scoreRepository,
         );
 
   Future<void> execute(int score) async {
@@ -87,5 +89,23 @@ class RecordScoreCommand extends Command {
     await scoreRepository.recordScore(
       RecordScoreRequest(score: score.toString()),
     );
+  }
+}
+
+class LogoutCommand extends Command {
+  LogoutCommand({
+    FlutterSecureStorage? storage,
+    AccountRepository? accountRepository,
+    ScoreRepository? scoreRepository,
+  }) : super(
+          'Logout Command',
+          storage: storage,
+          accountRepository: accountRepository,
+          scoreRepository: scoreRepository,
+        );
+
+  Future<void> execute() async {
+    accountState.logout();
+    await storage.deleteAll();
   }
 }
