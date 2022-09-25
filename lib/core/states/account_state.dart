@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_u/core/config/settings.dart';
 import 'package:quiz_u/core/models/account.dart';
-import 'package:quiz_u/core/models/user.dart';
+import 'package:quiz_u/core/models/country.dart';
+import 'package:quiz_u/core/utils/country_utils.dart';
 
 class AccountState extends ChangeNotifier {
   static AccountState read(BuildContext context) =>
@@ -10,22 +12,23 @@ class AccountState extends ChangeNotifier {
   Account? _account;
   Account? get account => _account;
 
-  User? _user;
-  User? get user => _user;
+  String _regionCode = Settings.fallbackCarrierRegionCode;
+  String get regionCode => _regionCode;
 
   void setAccount(Account? account, {bool notifyListeners = true}) {
     _account = account;
     if (notifyListeners) this.notifyListeners();
   }
 
-  void setUser(User? user, {bool notifyListeners = true}) {
-    _user = user;
-    if (notifyListeners) this.notifyListeners();
-  }
-
   void logout({bool notifyListeners = true}) {
-    _user = null;
     _account = null;
     if (notifyListeners) this.notifyListeners();
   }
+
+  void setDeviceRegionCode(String region, {bool notifyListeners = true}) {
+    _regionCode = region;
+    if (notifyListeners) this.notifyListeners();
+  }
+
+  Country? get deviceCountry => CountryUtils.getCountryByRegionCode(regionCode);
 }

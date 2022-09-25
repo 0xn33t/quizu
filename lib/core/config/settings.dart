@@ -12,4 +12,5 @@ abstract class Settings {
   static const String authStorageKey = 'authorized_v1';
   static const String scoresStorageKey = 'scores_v1';
   static const Duration quizDuration = Duration(minutes: 2);
+  static const String fallbackCarrierRegionCode = 'SA';
 }

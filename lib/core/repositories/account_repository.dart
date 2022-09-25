@@ -62,4 +62,21 @@ class AccountRepository extends BaseRepository {
     }
     return false;
   }
+
+  Future<User> getUser() async {
+    final res = await authorized(
+      (token) => httpClient.request(
+        options: HttpClientOptions(
+          method: HttpClientMethod.get,
+          endpoint: Endpoints.userInfo,
+          accessToken: token,
+        ),
+      ),
+    );
+
+    if (res.statusCode == HttpStatus.ok) {
+      return User.fromJson(jsonDecode(res.body));
+    }
+    throw ResponseExceptions.getUserFailed;
+  }
 }

@@ -27,6 +27,11 @@ class AppThemes {
       showUnselectedLabels: true,
       elevation: 0,
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(),
+      enabledBorder: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(),
+    ),
     textTheme: const TextTheme(
       headline1: TextStyle(
         fontSize: 35,

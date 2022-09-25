@@ -5,14 +5,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_u/core/config/index.dart';
 import 'package:quiz_u/core/models/user_score.dart';
-import 'package:quiz_u/core/repositories/quiz_repository.dart';
+import 'package:quiz_u/core/repositories/score_repository.dart';
 import 'package:quiz_u/core/requests/record_score_request.dart';
 
 class QuizState extends ChangeNotifier {
   static QuizState read(BuildContext context) => context.read<QuizState>();
 
   final _storage = const FlutterSecureStorage();
-  final _quizRepository = QuizRepository();
+  final _scoreRepository = ScoreRepository();
 
   final _pageController = PageController(initialPage: 0, keepPage: true);
   PageController get pageController => _pageController;
@@ -54,7 +54,7 @@ class QuizState extends ChangeNotifier {
         key: Settings.scoresStorageKey,
         value: jsonEncode(scores),
       );
-      await _quizRepository.recordScore(
+      await _scoreRepository.recordScore(
         RecordScoreRequest(score: score.toString()),
       );
     } catch (e) {

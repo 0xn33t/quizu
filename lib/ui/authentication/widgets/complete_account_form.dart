@@ -26,10 +26,9 @@ class CompleteAccountFormState extends State<CompleteAccountForm> {
       state.save();
       try {
         loaderState.updateState();
-        final res = await _accountRepository
+        await _accountRepository
             .updateUser(UpdateUserRequest(name: _name.text));
         if (!mounted) return;
-        AccountState.read(context).setUser(res);
         context.router.replaceAll(const [TabsRoute()]);
         loaderState.updateState();
       } catch (e) {

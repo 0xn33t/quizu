@@ -6,6 +6,7 @@ import 'package:quiz_u/core/index.dart';
 import 'package:quiz_u/core/models/account.dart';
 import 'package:quiz_u/core/repositories/account_repository.dart';
 import 'package:quiz_u/core/states/account_state.dart';
+import 'package:quiz_u/core/utils/phone_number_utils.dart';
 import 'package:quiz_u/ui/index.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,6 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> bootstrap() async {
+    final regionCode = await PhoneNumberUtils().carrierRegionCode();
+    AccountState.read(context).setDeviceRegionCode(regionCode);
     final authorizedAccount = await _storage.read(
       key: Settings.authStorageKey,
       aOptions: const AndroidOptions(resetOnError: true),
@@ -47,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
         return;
       }
     }
-    await context.router.replaceAll([const LoginRoute()]);
+    await context.router.replaceAll(const [LoginRoute()]);
   }
 
   @override

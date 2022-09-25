@@ -14,12 +14,12 @@ class TabsScreen extends StatelessWidget {
     AppTabItem(
       label: 'Leaderboard',
       icon: FlutterRemix.trophy_line,
-      route: HomeRoute(),
+      route: LeaderboardRoute(),
     ),
     AppTabItem(
       label: 'Profile',
       icon: FlutterRemix.user_3_line,
-      route: HomeRoute(),
+      route: ProfileRoute(),
     ),
   ];
 
