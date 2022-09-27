@@ -46,5 +46,14 @@
     "getTopScoresFailed": "Failed to get top scores",
     "getUserInfoFailed": "Failed to get user info",
     "shareResult": "I answered {score} correct answers in QuizU!",
-    "shareScoreFailed": "Failed to share your score"
+    "shareScoreFailed": "Failed to share your score",
+    "quizMe": "Quiz Me!",
+    "mainHeadlin1": "Ready",
+    "mainHeadlin2": "to test your knoweldge and challenge others?",
+    "mainHeadlin3": "Answer as much questions correctly within 2 minutes",
+    "youHaveCompleted": "You have completed ",
+    "correctAnswers": " correct answers!",
+    "noScores": "You don't have any scores yet! ",
+    "startAQuiz": "Start a Quiz",
+    "toTestKnowledge": " to test your knowledge!"
 }

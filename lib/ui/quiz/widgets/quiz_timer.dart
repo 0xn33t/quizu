@@ -5,16 +5,40 @@ import 'package:flutter/material.dart';
 import 'package:quiz_u/core/config/settings.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
+import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/commands.dart';
 
-class QuizTimer extends StatefulWidget {
-  const QuizTimer({super.key});
+class QuizTimer extends StatelessWidget {
+  const QuizTimer({super.key, this.margin});
+
+  final EdgeInsetsGeometry? margin;
 
   @override
-  State<QuizTimer> createState() => _QuizTimerState();
+  Widget build(BuildContext context) {
+    return Container(
+      margin: margin,
+      constraints: const BoxConstraints(minWidth: 80),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppEdges.large, vertical: AppEdges.small),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.08),
+        borderRadius: AppCorners.largeBorderRadius,
+      ),
+      child: const TimerCountdown(countdown: Settings.quizDuration),
+    );
+  }
 }
 
-class _QuizTimerState extends State<QuizTimer> {
+class TimerCountdown extends StatefulWidget {
+  const TimerCountdown({super.key, required this.countdown});
+
+  final Duration countdown;
+
+  @override
+  State<TimerCountdown> createState() => _TimerCountdownState();
+}
+
+class _TimerCountdownState extends State<TimerCountdown> {
   late Timer _timer;
   late Duration _countdown;
 
@@ -32,7 +56,7 @@ class _QuizTimerState extends State<QuizTimer> {
 
   void startQuizTimer() {
     const step = Duration(seconds: 1);
-    _countdown = Settings.quizDuration;
+    _countdown = widget.countdown;
     _timer = Timer.periodic(step, (_) {
       setState(() {
         _countdown -= step;
@@ -57,6 +81,8 @@ class _QuizTimerState extends State<QuizTimer> {
     return Text(
       '${_timerDigits(_countdown.inMinutes)}:'
       '${_timerDigits(_countdown.inSeconds)}',
+      style: Theme.of(context).textTheme.headline5,
+      textAlign: TextAlign.center,
     );
   }
 }

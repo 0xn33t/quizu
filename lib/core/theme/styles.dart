@@ -39,7 +39,7 @@ class AppColors {
 }
 
 class AppFonts {
-  static const tajawal = 'Tajawal';
+  static const tajawal = 'Montserrat';
 }
 
 class AppEdges {

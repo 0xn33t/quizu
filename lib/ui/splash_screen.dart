@@ -26,7 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
       if (!mounted) return;
       final state = AccountState.read(context);
       if (state.isAuthorized) {
-        context.router.replaceAll(const [TabsRoute()]);
+        context.router.replaceAll(!state.isAccountCompleted
+            ? const [CompleteAccountRoute()]
+            : const [TabsRoute()]);
         return;
       }
       await context.router.replaceAll(const [LoginRoute()]);

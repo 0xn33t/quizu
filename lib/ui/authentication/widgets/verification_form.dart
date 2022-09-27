@@ -1,16 +1,11 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:quiz_u/core/config/settings.dart';
 import 'package:quiz_u/core/l10n/l10n.dart';
-import 'package:quiz_u/core/models/account.dart';
-import 'package:quiz_u/core/repositories/account_repository.dart';
 import 'package:quiz_u/core/requests/login_request.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/account_state.dart';
+import 'package:quiz_u/core/utils/commands.dart';
 import 'package:quiz_u/core/utils/validators.dart';
 import 'package:quiz_u/ui/common/widgets/async_loader.dart';
 import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
@@ -26,8 +21,6 @@ class VerificationForm extends StatefulWidget {
 }
 
 class _VerificationFormState extends State<VerificationForm> {
-  final _accountRepository = AccountRepository();
-  final _storage = const FlutterSecureStorage();
   final _formKey = GlobalKey<FormState>();
   final _otp = TextEditingController();
 
@@ -37,17 +30,12 @@ class _VerificationFormState extends State<VerificationForm> {
       state.save();
       try {
         loaderState.updateState();
-        final res = await _accountRepository.login(
+        await LoginCommand().execute(
           LoginRequest(otp: _otp.text, mobile: widget.mobile),
         );
         if (!mounted) return;
-        final account = Account(token: res.token);
-        AccountState.read(context).setAccount(account);
-        await _storage.write(
-          key: Settings.authStorageKey,
-          value: jsonEncode(account),
-        );
-        context.router.replaceAll((res.isNewUser || !res.isNameSet)
+        final state = AccountState.read(context);
+        context.router.replaceAll(!state.isAccountCompleted
             ? const [CompleteAccountRoute()]
             : const [TabsRoute()]);
         loaderState.updateState();
@@ -81,6 +69,11 @@ class _VerificationFormState extends State<VerificationForm> {
               errorTextSpace: 30,
               pinTheme: PinTheme(
                 shape: PinCodeFieldShape.underline,
+                activeColor: Theme.of(context).colorScheme.primary,
+                activeFillColor: Colors.black26,
+                selectedColor: Colors.black26,
+                selectedFillColor: Colors.black26,
+                inactiveColor: Colors.black26,
               ),
               validator: (value) {
                 if (Validators.isEmpty(value)) return context.l10n.otpRequired;

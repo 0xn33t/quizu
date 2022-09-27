@@ -19,6 +19,14 @@ class AppThemes {
         color: AppColors.textColor,
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.all(12),
+        ),
+        elevation: MaterialStateProperty.all(0),
+      ),
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.white,
@@ -28,14 +36,20 @@ class AppThemes {
       elevation: 0,
     ),
     inputDecorationTheme: const InputDecorationTheme(
-      border: OutlineInputBorder(),
-      enabledBorder: OutlineInputBorder(),
-      focusedBorder: OutlineInputBorder(),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Colors.black12),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Colors.black12),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: AppColors.primary),
+      ),
     ),
     textTheme: const TextTheme(
       headline1: TextStyle(
         fontSize: 35,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w900,
         color: AppColors.textColor,
       ),
       headline2: TextStyle(
@@ -63,11 +77,11 @@ class AppThemes {
         fontWeight: FontWeight.w600,
         color: AppColors.textColor,
       ),
-      subtitle1: TextStyle(color: Colors.black45, fontSize: 14),
-      subtitle2: TextStyle(color: Colors.black45, fontSize: 13),
+      subtitle1: TextStyle(color: Colors.black, fontSize: 13),
+      subtitle2: TextStyle(color: Colors.black45, fontSize: 12),
       button: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-      bodyText1: TextStyle(color: AppColors.textColor),
-      bodyText2: TextStyle(color: AppColors.textColor),
+      bodyText1: TextStyle(color: AppColors.textColor, fontSize: 15),
+      bodyText2: TextStyle(color: AppColors.textColor, fontSize: 14),
     ).apply(fontFamily: AppFonts.tajawal),
   );
 }

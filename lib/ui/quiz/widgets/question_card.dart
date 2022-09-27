@@ -39,29 +39,22 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(question.question),
-        AppSpacers.verticalContent,
-        ...question.choices
-            .map((entry) =>
-                QuestionChoice(entry: entry, onChoiceClicked: _onChoiceClicked))
-            .toList(),
-        AppSpacers.verticalContent,
-        Selector<QuizState, bool>(
-          selector: (_, state) => state.skipped,
-          builder: (_, skipped, __) {
-            if (skipped) return const SizedBox();
-            return ElevatedButton(
-              onPressed: () {
-                QuizState.read(context).onSkip();
-              },
-              child: Text(context.l10n.skip),
-            );
-          },
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(AppEdges.content),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            question.question,
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          AppSpacers.verticalContent,
+          ...question.choices
+              .map((entry) => QuestionChoice(
+                  entry: entry, onChoiceClicked: _onChoiceClicked))
+              .toList(),
+        ],
+      ),
     );
   }
 }
@@ -78,7 +71,7 @@ class QuestionChoice extends StatelessWidget {
     return GestureDetector(
       onTap: () => onChoiceClicked.call(context, entry.key),
       child: Container(
-        padding: const EdgeInsets.all(AppEdges.content),
+        padding: const EdgeInsets.all(AppEdges.medium),
         margin: const EdgeInsets.only(bottom: AppEdges.content),
         decoration: const BoxDecoration(
           color: Colors.black12,
@@ -93,7 +86,12 @@ class QuestionChoice extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),
-              child: Center(child: Text(entry.key)),
+              child: Center(
+                child: Text(
+                  entry.key,
+                  style: Theme.of(context).textTheme.headline6!,
+                ),
+              ),
             ),
             AppSpacers.horizontalContent,
             Expanded(child: Text(entry.value)),

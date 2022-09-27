@@ -12,7 +12,7 @@ class User {
       _$UserFromJson(jsonValue);
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   @JsonKey(name: 'mobile')
   final String mobile;

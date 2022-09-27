@@ -68,7 +68,10 @@ class DialCodeSelector extends StatelessWidget {
                         transform: Matrix4.translationValues(0, 2.5, 0),
                         child: Text(country.dialCode),
                       ),
-                      const Icon(FlutterRemix.arrow_drop_down_line),
+                      const Icon(
+                        FlutterRemix.arrow_drop_down_line,
+                        color: Colors.black38,
+                      ),
                     ],
                   ),
                 );

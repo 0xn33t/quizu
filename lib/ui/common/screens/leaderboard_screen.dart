@@ -4,7 +4,7 @@ import 'package:quiz_u/core/l10n/l10n.dart';
 import 'package:quiz_u/core/models/top_score.dart';
 import 'package:quiz_u/core/repositories/score_repository.dart';
 import 'package:quiz_u/core/states/account_state.dart';
-import 'package:quiz_u/core/theme/styles.dart';
+import 'package:quiz_u/ui/common/widgets/app_list_tile.dart';
 import 'package:quiz_u/ui/common/widgets/extended_future_builder.dart';
 
 class LeaderboardScreen extends StatelessWidget {
@@ -38,19 +38,9 @@ class TopScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppEdges.content,
-        vertical: AppEdges.extraLarge,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(child: Text(topScore.name)),
-          AppSpacers.horizontalContent,
-          Text(topScore.score.toString()),
-        ],
-      ),
+    return AppListTile(
+      text: topScore.name,
+      trailing: ListTileBadge(value: topScore.score.toString()),
     );
   }
 }

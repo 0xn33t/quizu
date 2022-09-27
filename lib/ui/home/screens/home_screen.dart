@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.quizU),
@@ -19,14 +20,30 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Ready to test your knoweldge and challenge others?'),
+            Text(
+              context.l10n.mainHeadlin1,
+              style: themeData.textTheme.headline1!.copyWith(
+                fontWeight: FontWeight.w900,
+                fontSize: 65,
+                color: themeData.colorScheme.primary,
+              ),
+            ),
+            Text(
+              context.l10n.mainHeadlin2,
+              style: themeData.textTheme.headline2,
+            ),
+            AppSpacers.verticalExtraLarge,
+            Text(
+              context.l10n.mainHeadlin3,
+              style: themeData.textTheme.bodyText1!,
+            ),
+            AppSpacers.verticalExtraLarge,
             ElevatedButton(
               onPressed: () {
                 context.router.push(const QuizRoute());
               },
-              child: Text('Quiz Me!'),
+              child: Text(context.l10n.quizMe),
             ),
-            Text('Answer as much questions correctly within 2 minutes'),
           ],
         ),
       ),

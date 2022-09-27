@@ -7,6 +7,7 @@ import 'package:quiz_u/core/models/account.dart';
 import 'package:quiz_u/core/models/user_score.dart';
 import 'package:quiz_u/core/repositories/account_repository.dart';
 import 'package:quiz_u/core/repositories/score_repository.dart';
+import 'package:quiz_u/core/requests/login_request.dart';
 import 'package:quiz_u/core/requests/record_score_request.dart';
 import 'package:quiz_u/core/routing/app_router.dart' show AppNavigatorState;
 import 'package:quiz_u/core/states/account_state.dart';
@@ -59,6 +60,8 @@ class BootstrapCommand extends Command {
       accountState.setAccount(account, notifyListeners: false);
       final verified = await accountRepository.tokenVerification();
       accountState.setTokenVerification(verified, notifyListeners: false);
+      final user = await accountRepository.getUser();
+      accountState.setUser(user);
       final userScores = await storage.read(key: Settings.scoresStorageKey);
       if (userScores != null) {
         final userScoresList = UserScore.fromJsonList(jsonDecode(userScores));
@@ -89,6 +92,31 @@ class RecordScoreCommand extends Command {
     await scoreRepository.recordScore(
       RecordScoreRequest(score: score.toString()),
     );
+  }
+}
+
+class LoginCommand extends Command {
+  LoginCommand({
+    FlutterSecureStorage? storage,
+    AccountRepository? accountRepository,
+    ScoreRepository? scoreRepository,
+  }) : super(
+          'Login Command',
+          storage: storage,
+          accountRepository: accountRepository,
+          scoreRepository: scoreRepository,
+        );
+
+  Future<void> execute(LoginRequest request) async {
+    final res = await accountRepository.login(request);
+    final account = Account(token: res.token);
+    accountState.setAccount(account);
+    await storage.write(
+      key: Settings.authStorageKey,
+      value: jsonEncode(account),
+    );
+    final user = await accountRepository.getUser();
+    accountState.setUser(user);
   }
 }
 

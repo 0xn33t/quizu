@@ -57,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           MobileFormField(controller: _mobile),
-          AppSpacers.verticalContent,
+          AppSpacers.verticalMedium,
           ElevatedButton(
             onPressed: _submit,
             child: Text(context.l10n.start),
