@@ -111,6 +111,7 @@ class LoginCommand extends Command {
     final res = await accountRepository.login(request);
     final account = Account(token: res.token);
     accountState.setAccount(account);
+    accountState.setTokenVerification(true, notifyListeners: false);
     await storage.write(
       key: Settings.authStorageKey,
       value: jsonEncode(account),

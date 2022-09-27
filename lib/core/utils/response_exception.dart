@@ -28,6 +28,8 @@ class ResponseException implements Exception {
         return context.l10n.getTopScoresFailed;
       case ResponseExceptionCodes.getUserFailed:
         return context.l10n.getUserInfoFailed;
+      case ResponseExceptionCodes.unauthorized:
+        return context.l10n.getUserInfoFailed;
       default:
         return context.l10n.somethingWentWrong;
     }
@@ -45,6 +47,8 @@ extension ResponseExceptions on ResponseException {
       ResponseException(ResponseExceptionCodes.getTopScoresFailed);
   static const getUserFailed =
       ResponseException(ResponseExceptionCodes.getUserFailed);
+  static const unauthorized =
+      ResponseException(ResponseExceptionCodes.unauthorized);
 }
 
 abstract class ResponseExceptionCodes {
@@ -53,4 +57,5 @@ abstract class ResponseExceptionCodes {
   static const String getQuestionsFailed = 'L-003';
   static const String getTopScoresFailed = 'L-004';
   static const String getUserFailed = 'L-005';
+  static const String unauthorized = 'L-006';
 }

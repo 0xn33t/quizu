@@ -7,8 +7,8 @@ import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/commands.dart';
 import 'package:quiz_u/core/utils/validators.dart';
+import 'package:quiz_u/ui/common/widgets/async_indicators.dart';
 import 'package:quiz_u/ui/common/widgets/async_loader.dart';
-import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
 import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 
 class VerificationForm extends StatefulWidget {

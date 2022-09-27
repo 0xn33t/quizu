@@ -85,10 +85,3 @@ class AppThemes {
     ).apply(fontFamily: AppFonts.tajawal),
   );
 }
-
-extension AppDirectionality on BuildContext {
-  bool get isRTL {
-    final TextDirection currentDirection = Directionality.of(this);
-    return currentDirection == TextDirection.rtl;
-  }
-}

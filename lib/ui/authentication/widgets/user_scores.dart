@@ -57,7 +57,6 @@ class UserScores extends StatelessWidget {
                   ),
                 ),
               );
-              return Text('You dont have any scores yet');
             }
             return Expanded(
               child: ListView.separated(

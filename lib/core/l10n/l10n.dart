@@ -7,5 +7,4 @@ extension L10nBuildContext on BuildContext {
   Locale get locale => Localizations.localeOf(this);
   String get languageCode => locale.languageCode;
   String? get countryCode => locale.countryCode;
-  
 }

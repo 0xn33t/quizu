@@ -89,19 +89,3 @@ class AppSpacers {
   static const SizedBox verticalExtraExtraLarge =
       SizedBox(height: AppEdges.extraExtraLarge);
 }
-
-extension CustomColorScheme on ColorScheme {
-  MaterialColor get primarySwatch => AppColors.primarySwatch;
-  MaterialColor get secondarySwatch => AppColors.secondarySwatch;
-}
-
-extension CustomThemeData on ThemeData {
-  ShapeBorder get modalSheetShape {
-    return const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: AppCorners.smallRadius,
-        topRight: AppCorners.smallRadius,
-      ),
-    );
-  }
-}

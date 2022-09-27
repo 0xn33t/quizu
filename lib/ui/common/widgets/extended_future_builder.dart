@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_u/core/utils/response_exception.dart';
-import 'package:quiz_u/ui/common/widgets/loading_indicator.dart';
 import 'async_indicators.dart';
 
 typedef AsyncResultBuilder<T> = Widget Function(BuildContext context, T data);

@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/account_state.dart';
 import 'package:quiz_u/core/utils/http_client.dart';
+import 'package:quiz_u/core/utils/response_exception.dart';
 
 typedef AuthorizedRequest = Future<Response> Function(String token);
 
@@ -13,9 +14,14 @@ class BaseRepository {
   @protected
   late final HttpClient httpClient;
 
+  final _context = AppNavigatorState.navigatorKey.currentContext!;
+
+  AccountState? get _accountState => AccountState.read(_context);
+
   Future<Response> authorized(AuthorizedRequest auth) {
-    final context = AppNavigatorState.navigatorKey.currentContext!;
-    final account = AccountState.read(context).account;
-    return auth(account!.accessToken);
+    if (_accountState?.account != null) {
+      return auth(_accountState!.account!.accessToken);
+    }
+    throw ResponseExceptions.unauthorized;
   }
 }
