@@ -12,10 +12,16 @@ import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 typedef OnChoiceClicked = void Function(BuildContext context, String choice);
 
 class QuestionCard extends StatelessWidget {
-  const QuestionCard({super.key, required this.question, this.isLast = false});
+  const QuestionCard({
+    super.key,
+    required this.question,
+    required this.meta,
+    this.isLast = false,
+  });
 
   final Question question;
   final bool isLast;
+  final Widget meta;
 
   void _onChoiceClicked(BuildContext context, String choice) {
     if (question.isCorrectAnswer(choice)) {
@@ -44,6 +50,8 @@ class QuestionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          meta,
+          AppSpacers.verticalLarge,
           Text(
             question.question,
             style: Theme.of(context).textTheme.headline1,

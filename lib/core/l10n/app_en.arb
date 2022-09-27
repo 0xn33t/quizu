@@ -56,5 +56,6 @@
     "noScores": "You don't have any scores yet! ",
     "startAQuiz": "Start a Quiz",
     "toTestKnowledge": " to test your knowledge!",
-    "unauhorized": "You are not authorized!"
+    "unauhorized": "You are not authorized!",
+    "ofV": "of"
 }

@@ -62,6 +62,7 @@ class _QuizCompleted extends StatelessWidget {
             ],
           ),
         ),
+        AppSpacers.verticalContent,
         TextButton.icon(
           icon: const Icon(FlutterRemix.share_line),
           label: Text(context.l10n.share),
@@ -95,6 +96,7 @@ class _WrongAnswer extends StatelessWidget {
           context.l10n.wrongAnswer,
           style: Theme.of(context).textTheme.headline1,
         ),
+        AppSpacers.verticalContent,
         ElevatedButton(
           onPressed: () {
             context.router.replace(const QuizRoute());

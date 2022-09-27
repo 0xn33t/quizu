@@ -28,7 +28,7 @@ class QuizScreen extends StatelessWidget {
                 const QuizTimer(
                   margin: EdgeInsets.symmetric(vertical: AppEdges.extraLarge),
                 ),
-                Expanded(child: QuestionsList(questions: result.sublist(0, 5))),
+                Expanded(child: QuestionsList(questions: result)),
                 AppSpacers.verticalContent,
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
