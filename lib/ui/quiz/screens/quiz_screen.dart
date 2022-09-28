@@ -24,9 +24,10 @@ class QuizScreen extends StatelessWidget {
           future: QuizRepository().getQuestions(),
           builder: (context, result) {
             return Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const QuizTimer(
-                  margin: EdgeInsets.symmetric(vertical: AppEdges.extraLarge),
+                  margin: EdgeInsets.symmetric(vertical: AppEdges.medium),
                 ),
                 Expanded(child: QuestionsList(questions: result)),
                 AppSpacers.verticalContent,

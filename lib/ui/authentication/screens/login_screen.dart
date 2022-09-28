@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(context.l10n.login),
         ),
-        body: const Padding(
+        body: const SingleChildScrollView(
           padding: EdgeInsets.all(AppEdges.content),
           child: LoginForm(),
         ),

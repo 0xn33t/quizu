@@ -14,11 +14,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.l10n.quizU),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(AppEdges.content),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               context.l10n.mainHeadlin1,
@@ -39,9 +38,7 @@ class HomeScreen extends StatelessWidget {
             ),
             AppSpacers.verticalExtraLarge,
             ElevatedButton(
-              onPressed: () {
-                context.router.push(const QuizRoute());
-              },
+              onPressed: () => context.router.push(const QuizRoute()),
               child: Text(context.l10n.quizMe),
             ),
           ],

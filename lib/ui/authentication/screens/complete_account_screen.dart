@@ -14,7 +14,7 @@ class CompleteAccountScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(context.l10n.completeAccount),
         ),
-        body: const Padding(
+        body: const SingleChildScrollView(
           padding: EdgeInsets.all(AppEdges.content),
           child: CompleteAccountForm(),
         ),

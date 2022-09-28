@@ -86,7 +86,7 @@ class CountriesList extends StatelessWidget {
                 style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
               AppSpacers.horizontalMedium,
-              Text(region.name),
+              Expanded(child: Text(region.name)),
               const Spacer(),
               Text(region.dialCode),
             ],

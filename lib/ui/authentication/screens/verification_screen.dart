@@ -16,7 +16,7 @@ class VerificationScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(context.l10n.mobileVerification),
         ),
-        body: Padding(
+        body: SingleChildScrollView(
           padding: const EdgeInsets.all(AppEdges.content),
           child: VerificationForm(mobile: mobile),
         ),

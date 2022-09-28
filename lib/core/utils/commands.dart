@@ -50,7 +50,8 @@ class BootstrapCommand extends Command {
 
   Future<void> execute() async {
     final regionCode = await PhoneNumberUtils().carrierRegionCode();
-    accountState.setDeviceRegionCode(regionCode, notifyListeners: false);
+    accountState.setDeviceRegionCode(regionCode.toUpperCase(),
+        notifyListeners: false);
     final authorizedAccount = await storage.read(
       key: Settings.authStorageKey,
       aOptions: const AndroidOptions(resetOnError: true),

@@ -7,6 +7,7 @@ import 'package:quiz_u/core/routing/app_router.dart';
 import 'package:quiz_u/core/states/quiz_state.dart';
 import 'package:quiz_u/core/theme/styles.dart';
 import 'package:quiz_u/core/utils/commands.dart';
+import 'package:quiz_u/ui/common/widgets/app_decorated_box.dart';
 import 'package:quiz_u/ui/common/widgets/snack_bar_notifiers.dart';
 
 typedef OnChoiceClicked = void Function(BuildContext context, String choice);
@@ -45,23 +46,30 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(AppEdges.content),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          meta,
-          AppSpacers.verticalLarge,
-          Text(
-            question.question,
-            style: Theme.of(context).textTheme.headline1,
-          ),
-          AppSpacers.verticalContent,
-          ...question.choices
-              .map((entry) => QuestionChoice(
-                  entry: entry, onChoiceClicked: _onChoiceClicked))
-              .toList(),
-        ],
+      child: AppDecoratedBox(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: AppEdges.small),
+              child: meta,
+            ),
+            Text(
+              question.question,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline3!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+            AppSpacers.verticalContent,
+            ...question.choices
+                .map((entry) => QuestionChoice(
+                    entry: entry, onChoiceClicked: _onChoiceClicked))
+                .toList(),
+          ],
+        ),
       ),
     );
   }
@@ -76,28 +84,26 @@ class QuestionChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () => onChoiceClicked.call(context, entry.key),
-      child: Container(
-        padding: const EdgeInsets.all(AppEdges.medium),
+      child: AppDecoratedContainer(
+        radius: 20,
+        padding: const EdgeInsets.all(AppEdges.small),
         margin: const EdgeInsets.only(bottom: AppEdges.content),
-        decoration: const BoxDecoration(
-          color: Colors.black12,
-          borderRadius: AppCorners.largeBorderRadius,
-        ),
+        color: theme.colorScheme.primary.withOpacity(0.05),
         child: Row(
           children: [
-            Container(
+            SizedBox(
               width: 36,
               height: 36,
-              decoration: const BoxDecoration(
+              child: AppDecoratedContainer(
                 shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Center(
-                child: Text(
-                  entry.key,
-                  style: Theme.of(context).textTheme.headline6!,
+                child: Center(
+                  child: Text(
+                    entry.key,
+                    style: theme.textTheme.headline6!,
+                  ),
                 ),
               ),
             ),
